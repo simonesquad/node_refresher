@@ -7,13 +7,12 @@ const app = express();
 
 //connect to mongodb
 const dbURI = 'mongodb+srv://simone:test1234@node-fun.pmw6z.mongodb.net/node-fun?retryWrites=true&w=majority';
-mongoose.connect(dbURI);
-
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then((result) => console.log('connected to db'))
+    .catch((err) => console.log(err));
 //register view engine
 app.set('view engine', 'ejs')
 
-// listen for requests
-app.listen(3000);
 
 // middleware and static files
 app.use(express.static('public'));
